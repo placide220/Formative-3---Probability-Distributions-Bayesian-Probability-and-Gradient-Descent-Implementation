@@ -1,93 +1,34 @@
-import csv
-import re
+import numpy as np
 
+X = np.array([[1, 3], [4, 10]], dtype=float)
+y = np.array([[5], [6]], dtype=float)
 
-def load_data(csv_path="IMDB_Dataset.csv", text_col="review", label_col="sentiment"):
-    """
-    Loads the real IMDb Movie Reviews dataset (50,000 reviews).
-    In Colab: just upload IMDB_Dataset.csv to the working directory
-    (or mount Drive and update the path) -- this function will find it.
-    """
-    reviews = []
-    with open(csv_path, newline="", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            text = row[text_col].lower()
-            label = row[label_col].strip().lower()
-            reviews.append((text, label))
-    return reviews
+m = np.array([[-1], [2]], dtype=float)
+b = 1.0
 
+alpha = 0.001
+N_ITER = 3
 
-POSITIVE_KEYWORDS = ["excellent", "brilliant", "masterpiece", "love"]
-NEGATIVE_KEYWORDS = ["boring", "waste", "awful", "worst"]
-ALL_KEYWORDS = POSITIVE_KEYWORDS + NEGATIVE_KEYWORDS
+print("Initial parameters:")
+print(f"m = {m.ravel()}")
+print(f"b = {b}")
+print()
 
+for i in range(N_ITER):
+    y_pred = X @ m + b
+    error = y_pred - y
 
-def contains_keyword(text, keyword):
-    """Simple whole-word containment check using regex."""
-    return re.search(rf"\b{re.escape(keyword)}\b", text) is not None
+    m_grad = (2 / X.shape[0]) * X.T @ error
+    b_grad = (2 / X.shape[0]) * np.sum(error)
 
+    m = m - alpha * m_grad
+    b = b - alpha * b_grad
 
-def bayes_for_keyword(reviews, keyword):
-    """
-    Computes and returns:
-        prior       P(Positive)
-        likelihood  P(keyword | Positive)
-        marginal    P(keyword)
-        posterior   P(Positive | keyword)
-    using plain counting -- no external libraries.
-    """
-    total = len(reviews)
-    n_positive = sum(1 for _, label in reviews if label == "positive")
-
-    prior = n_positive / total
-
-    pos_with_kw = sum(1 for text, label in reviews
-                       if label == "positive" and contains_keyword(text, keyword))
-    likelihood = pos_with_kw / n_positive if n_positive > 0 else 0.0
-
-    n_with_kw = sum(1 for text, _ in reviews if contains_keyword(text, keyword))
-    marginal = n_with_kw / total if total > 0 else 0.0
-
-    if marginal == 0:
-        posterior = 0.0
-    else:
-        posterior = (likelihood * prior) / marginal
-
-    return {
-        "keyword": keyword,
-        "prior": prior,
-        "likelihood": likelihood,
-        "marginal": marginal,
-        "posterior": posterior,
-        "n_with_kw": n_with_kw,
-    }
-
-
-def print_results_table(results):
-    header = f"{'Keyword':<14}{'P(Positive)':<14}{'P(kw|Pos)':<14}{'P(kw)':<12}{'P(Pos|kw)':<12}{'n(kw)':<8}"
-    print(header)
-    print("-" * len(header))
-    for r in results:
-        print(f"{r['keyword']:<14}{r['prior']:<14.4f}{r['likelihood']:<14.4f}"
-              f"{r['marginal']:<12.4f}{r['posterior']:<12.4f}{r['n_with_kw']:<8}")
-
-
-if __name__ == "__main__":
-    reviews = load_data('/content/IMDB Dataset.csv')
-
-    print(f"Loaded {len(reviews)} reviews "
-          f"({sum(1 for _,l in reviews if l=='positive')} positive, "
-          f"{sum(1 for _,l in reviews if l=='negative')} negative)\n")
-
-    print("=== Keywords chosen as POSITIVE indicators ===")
-    pos_results = [bayes_for_keyword(reviews, kw) for kw in POSITIVE_KEYWORDS]
-    print_results_table(pos_results)
-
-    print("\n=== Keywords chosen as NEGATIVE indicators ===")
-    neg_results = [bayes_for_keyword(reviews, kw) for kw in NEGATIVE_KEYWORDS]
-    print_results_table(neg_results)
-
-    print("\nInterpretation: for positive-indicator keywords we expect P(Positive|keyword) "
-          "to be well ABOVE the prior P(Positive); for negative-indicator keywords we expect "
-          "P(Positive|keyword) to be well BELOW the prior -- discuss this contrast in your presentation.")
+    print(f"Iteration {i + 1}:")
+    print(f"  y_pred = {y_pred.ravel()}")
+    print(f"  error  = {error.ravel()}")
+    print(f"  m_grad = {m_grad.ravel()}")
+    print(f"  b_grad = {b_grad:.4f}")
+    print(f"  m      = {m.ravel()}")
+    print(f"  b      = {b:.4f}")
+    print()
