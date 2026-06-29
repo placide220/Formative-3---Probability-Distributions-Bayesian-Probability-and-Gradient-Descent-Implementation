@@ -15,7 +15,7 @@ def load_data(csv_path="GaltonFamilies.csv"):
     rng = np.random.default_rng(0)
     rng.shuffle(data)
 
-   
+ 
     return data, children, parents
 
 
