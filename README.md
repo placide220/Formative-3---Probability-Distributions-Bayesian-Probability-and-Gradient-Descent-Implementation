@@ -1,5 +1,7 @@
 # Formative 3 — Probability Distributions, Bayesian Probability & Gradient Descent
 
+Task Sheet: [Team Task Sheet_ML_F3_C3 _G10](https://docs.google.com/spreadsheets/d/1KHgaNNePcu52AQp5eCi_h_6w3lCj5YCcLVAN_V6VB7w/edit?usp=sharing)
+
 **Group:** 4 members. **Datasets:** `GaltonFamilies.csv` (Part 1, included),
 `IMDB_Dataset.csv` (Part 2, 50k reviews — download link below, too large to commit raw).
 
