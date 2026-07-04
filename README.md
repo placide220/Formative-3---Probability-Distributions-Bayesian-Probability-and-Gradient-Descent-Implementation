@@ -7,7 +7,7 @@ This repository contains one combined Jupyter Notebook for the full Formative 3 
 3. Manual-gradient-descent support values
 4. Gradient descent in Python using SciPy and Matplotlib
 
-## Main Submission Files
+## Main Files
 
 - `Formative_3_Probability_Distributions,_Bayesian_Probability,_and_Gradient_Descent_Implementation.ipynb`  
   Clean source notebook.
@@ -19,28 +19,6 @@ This repository contains one combined Jupyter Notebook for the full Formative 3 
   Bayesian sentiment posterior plot.
 - `part4_gradient_descent_results.png`  
   Gradient descent parameter and cost plots.
-
-## How to Run
-
-Create or activate the local environment, then open the notebook:
-
-```bash
-source .venv/bin/activate
-jupyter notebook
-```
-
-To execute the notebook from the terminal:
-
-```bash
-.venv/bin/jupyter nbconvert \
-  --to notebook \
-  --execute "Formative_3_Probability_Distributions,_Bayesian_Probability,_and_Gradient_Descent_Implementation.ipynb" \
-  --output "Formative_3_Probability_Distributions_Executed.ipynb"
-```
-
-Required Python packages are installed in `.venv`: `numpy`, `pandas`, `matplotlib`, `scipy`, `notebook`, `ipykernel`, and `nbconvert`.
-
-## Datasets
 
 The raw datasets are **not committed** to this repository because the IMDb CSV is large. Download them from Kaggle:
 
