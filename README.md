@@ -7,6 +7,17 @@ This repository contains one combined Jupyter Notebook for the full Formative 3 
 3. Manual-gradient-descent support values
 4. Gradient descent in Python using SciPy and Matplotlib
 
+## Members
+
+- Kevin Nizeyimana
+- UWENAYO Alain Paicifique
+- Placide Niyonizeye
+- Benitha Iradukunda
+
+## Task Sheet
+
+- [Google Sheets task sheet](https://docs.google.com/spreadsheets/d/1KHgaNNePcu52AQp5eCi_h_6w3lCj5YCcLVAN_V6VB7w/edit?usp=sharing)
+
 ## Main Files
 
 - `Formative_3_Probability_Distributions,_Bayesian_Probability,_and_Gradient_Descent_Implementation.ipynb`  
@@ -17,6 +28,8 @@ This repository contains one combined Jupyter Notebook for the full Formative 3 
   EM mean and log-likelihood plots.
 - `part2_bayesian_sentiment_keywords.png`  
   Bayesian sentiment posterior plot.
+- `manual_calculations.pdf`  
+  Part 3 manual gradient descent calculations.
 - `part4_gradient_descent_results.png`  
   Gradient descent parameter and cost plots.
 
@@ -141,7 +154,7 @@ y = [5, 6]
 alpha = 0.01
 ```
 
-Manual work should be submitted as a neat PDF or inserted into the notebook as images. The manual solution must show:
+The Part 3 manual work is provided in `manual_calculations.pdf`. It shows:
 
 - Predictions using matrix multiplication
 - MSE cost
@@ -174,18 +187,3 @@ After 50 iterations:
 - Final predictions: `[3.780123, 6.357643]`
 
 The error decreases strongly from `61.000000` to `0.808004`, showing that the parameters move in a direction that reduces the MSE.
-
-## Presentation Checklist
-
-Use the executed notebook during presentation and show:
-
-- EM initialization, E-step idea, M-step idea, and convergence by log-likelihood
-- The EM tracking table with at least iterations `0`, `1`, and `2`
-- Why splitting at the global mean is not reliable
-- Posterior classification for a coach-provided height
-- Bayesian keyword choices and why each keyword was selected
-- The table of prior, likelihood, marginal, and posterior probabilities
-- Manual gradient descent calculations from the PDF/images
-- Gradient descent code, parameter plot, and error plot
-
-Note: the rubric text mentions "Basketball Player" in one place, but the provided assignment dataset is parents vs. children. This notebook uses **father vs. child** consistently.
