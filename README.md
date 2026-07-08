@@ -95,7 +95,8 @@ For a test height of `68` inches, the executed notebook outputs:
 - `P(child) = 0.3553`
 - `P(father) = 0.6447`
 
-During presentation, change the test height in `classify_height(...)` to the value given by the coach and re-run that cell.
+
+
 
 ## Part 2: Bayesian Probability
 
