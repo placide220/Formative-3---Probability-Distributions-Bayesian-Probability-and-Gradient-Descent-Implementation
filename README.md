@@ -98,6 +98,8 @@ For a test height of `68` inches, the executed notebook outputs:
 
 
 
+![EM mean and log-likelihood plots](./part1_means_and_loglikelihood.png)
+
 ## Part 2: Bayesian Probability
 
 We compute only:
@@ -142,6 +144,8 @@ Summary of executed results:
 | worst | 0.5000 | 0.0164 | 0.0887 | 0.0927 |
 
 Positive keywords raise the posterior above the `0.50` prior. Negative keywords reduce it below the prior.
+
+![Bayesian sentiment posterior plot](./part2_bayesian_sentiment_keywords.png)
 
 ## Part 3: Manual Gradient Descent
 
@@ -188,3 +192,5 @@ After 50 iterations:
 - Final predictions: `[3.780123, 6.357643]`
 
 The error decreases strongly from `61.000000` to `0.808004`, showing that the parameters move in a direction that reduces the MSE.
+
+![Gradient descent parameter and cost plots](./part4_gradient_descent_results.png)
